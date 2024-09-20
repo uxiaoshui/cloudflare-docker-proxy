@@ -1,14 +1,6 @@
 import DOCS from './tips.html'
  
-// return tips.html
-if (url.pathname === "/") {
-  return new Response(DOCS, {
-    status: 200,
-    headers: {
-      "content-type": "text/html"
-    }
-  });
-}
+
 
 addEventListener("fetch", (event) => {
   event.passThroughOnException();
@@ -54,6 +46,16 @@ async function handleRequest(request) {
         status: 404,
       }
     );
+  }
+
+ // return tips.html
+ if (url.pathname === "/") {
+   return new Response(DOCS, {
+     status: 200,
+     headers: {
+       "content-type": "text/html"
+     }
+   });
   }
   const isDockerHub = upstream == dockerHub;
   const authorization = request.headers.get("Authorization");
